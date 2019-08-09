@@ -39,7 +39,7 @@ $http.post('http://listingapp.ssalumni.com/api/user/resendOTP', {
 		console.log(res);
 		alert("new otp sent to your number");
 		$scope.user.number = "";
-		$window.location.reload(true);
+	//	$window.location.reload(true);
 		$state.go('thanks');
 })}
  else{
@@ -90,7 +90,7 @@ $scope.login = function(loginData) {
     .then(function(response) {
 	console.log(response);
 	// alert("please pay your matrimonial fee" + response.data[0].total_payment )})
-	 $window.location.reload(true);
+	// $window.location.reload(true);
 	window.localStorage.setItem('payment', response.data[0].total_payment);})
 		   $state.go('menus');
 		
@@ -504,7 +504,7 @@ $(document).ready(function(){
 	$scope.showmember = function(city){
 		var city = city.city;
 		 window.localStorage.setItem('city',city);
-		 $window.location.reload(true);
+	//	 $window.location.reload(true);
 		$state.go('filteredmembers');
 	}
 	$scope.back = function(){
@@ -869,7 +869,7 @@ $scope.searchmemberpage = function(){
    })  
 	}
 $scope.membermessagepage = function(){
-	 $window.location.reload(true);
+	// $window.location.reload(true);
 	 var messageid = window.localStorage.getItem('messageid');
 	 console.log(messageid);
 	 if($scope.messages == "0"){
@@ -897,12 +897,12 @@ $scope.membermessagepage = function(){
 		if(userid!=membersenderid){
 	$http.post('http://listingapp.ssalumni.com/api/user/reply_message', {sender_id: userid,reciever_id: membersenderid,parent_id: '0' ,"type": "MSG", message: user.message, reply_id: memberid}).then(function(res){
 		console.log(res);
-		$window.location.reload(true);
+	//	$window.location.reload(true);
 	})}
 	else{
 		$http.post('http://listingapp.ssalumni.com/api/user/reply_message', {sender_id: userid,reciever_id: memberreceiverid,parent_id: '0' ,"type": "MSG", message: user.message, reply_id: memberid}).then(function(res){
 		console.log(res);
-		$window.location.reload(true);
+//		$window.location.reload(true);
 	})
 	}
 	}
@@ -946,7 +946,7 @@ $scope.membermessagepage = function(){
 	
 	$http.post('http://listingapp.ssalumni.com/api/user/reply_message', {sender_id: userid,reciever_id: memberid,parent_id: '0' ,"type": "MSG", message: user.message, reply_id: messageid }).then(function(res){
 		console.log(res);
- $window.location.reload(true);
+ // $window.location.reload(true);
 		})} else{$http.post('http://listingapp.ssalumni.com/api/user/reply_message', {sender_id: userid,reciever_id: memberid,parent_id: '0' ,"type": "MSG", message: user.message, reply_id: "0" }).then(function(res){
 		console.log(res);
 	window.localStorage.setItem('messageid', res.data.message_id);
@@ -987,7 +987,7 @@ $http.post('http://listingapp.ssalumni.com/api/user/messages_full_thread_general
 	});
 
 	$scope.reply = function(message){
-	  $window.location.reload(true);
+	//  $window.location.reload(true);
 		$scope.messagesenderid = message.sender_id ;
 		console.log($scope.messagesenderid);
 		window.localStorage.setItem('name', message.name);
@@ -1754,7 +1754,7 @@ $scope.home = function(){
 	}	
 	$scope.search = function(searchText){
 		 window.localStorage.setItem('searchmember',searchText);
-		 $window.location.reload(true);
+	//	 $window.location.reload(true);
 		$state.go('filteredbysearchmembers');
 	}	
 	$scope.find = function(){
@@ -1767,7 +1767,7 @@ $scope.home = function(){
 	 console.log(res)
 	 $scope.India = res;})
 	 $scope.showcity = function(state){
-		 	 $window.location.reload(true);
+		// 	 $window.location.reload(true);
 		$state.go('cities');
 		var state = state.State;
 	 window.localStorage.setItem('state',state);}
@@ -1812,7 +1812,7 @@ console.log(userlocation);
                 template: 'Signing Up...'
             });
 	var link = "http://listingapp.ssalumni.com/api/user/register" ; 
-	$http.post(link, {name : credentials.name,  password : credentials.password, location:userlocation, mobile:credentials.number /* username:credentials.username, interested : credentials.isinterested */})
+	$http.post(link, {name : credentials.name,  password : credentials.password, location:userlocation, mobile:credentials.number, email : credentials.email /* username:credentials.username, interested : credentials.isinterested */})
 			.then(function (res){	 //if a response is recieved from the server.
 	console.log(res);
 	if(res.data.status==true){
@@ -1824,7 +1824,8 @@ console.log(userlocation);
 				$state.go('thanks');
 				$scope.credentials.name = "";
 				$scope.credentials.password = "";
-				$scope.credentials.location = "";
+        $scope.credentials.location = "";
+        $scope.credentials.email = "";
 				$scope.credentials.number = "";
 	$scope.credentials.confirmpassword = "";}else{
 		$ionicLoading.hide();alert("mobile number is already used! please try different number");}
@@ -1986,7 +1987,7 @@ $scope.membermessages = function(){
 		$state.go('matrimony');
 	}
 	$scope.resetpassword = function(){
-		 $window.location.reload(true);
+		// $window.location.reload(true);
 		$state.go('resetpassword');
 	}
 	$scope.logout = function(){
@@ -2024,7 +2025,7 @@ $scope.membermessages = function(){
 		$scope.messages = res ; }else{$scope.message = "No Message Received"}
 	});
 	$scope.reply = function(message){
-		$window.location.reload(true);
+	//	$window.location.reload(true);
 		window.localStorage.setItem('name', message.name);
 		window.localStorage.setItem('messagesenderid', message.sender_id);
 		window.localStorage.setItem('messageparentid', message.parent_id);
@@ -2119,7 +2120,7 @@ $scope.setbackgroundcolor = function(message){
     $scope.modal = modal;
   });*/
   $scope.edit1 = function(user){
-	  $window.location.reload(true);
+	 // $window.location.reload(true);
 	   window.localStorage.setItem('userid',user.id);
 	  $state.go('requestdetail');
   }
@@ -2461,7 +2462,7 @@ $scope.setbackgroundcolor = function(message){
 		}$state.go('menus');
 	}
 	$scope.requestspage = function(){
-		$window.location.reload(true);
+	//	$window.location.reload(true);
 		$state.go('requests');
 	}
 	$scope.sentrequest = function(){
@@ -2505,7 +2506,8 @@ $scope.setbackgroundcolor = function(message){
                 showDelay: 0,
 				duration:6000
             }); */
-	  $window.location.reload(true);})}
+   // $window.location.reload(true);
+  })}
 	else{
 		$http.post('http://listingapp.ssalumni.com/api/user/reply_message', {sender_id: userid,reciever_id: $scope.msgsenderid,parent_id: $scope.msgsenderid ,"type": "M", message: user.message, reply_id: $scope.messageid}).success(function(res){
 		console.log(res);
@@ -2518,7 +2520,7 @@ $scope.setbackgroundcolor = function(message){
                 showDelay: 0,
 				duration:6000
             }); */
-	$window.location.reload(true);
+//	$window.location.reload(true);
 	
 	}); 
 	}
@@ -2643,7 +2645,7 @@ else{agentlocation = user.address}
                 showDelay: 0,
 				duration:2000
             });
-			$window.location.reload(true);
+    //        $window.location.reload(true);
 			$state.go('additionaldetailsadmin');
 })
 user.name = "";
@@ -3014,7 +3016,8 @@ $scope.activeuser = {};
                 showDelay: 0,
 				duration:4000
             });
-	$window.location.reload(true);})
+ //           $window.location.reload(true);
+})
 	  } else if($scope.buttontext == "ACTIVATE"){$http.post(link, {matrimonial_id:$scope.matrimonialid, status:"Activated"})
 			.then(function (res){	 //if a response is recieved from the server.
 	  console.log(res);
@@ -3026,7 +3029,8 @@ $scope.activeuser = {};
                 showDelay: 0,
 				duration:4000
             });
-	$window.location.reload(true);})}
+//  $window.location.reload(true);
+})}
 	  
   }
   $scope.createnewprofile = function(){
@@ -3046,7 +3050,7 @@ $scope.updatematrimonial = function(activeuser, user){
      });
      confirmPopup.then(function(res) {
        if(res) {
-	   $window.location.reload(true);
+	  // $window.location.reload(true);
 			$state.go('updatephotos'); 
        } else {
          console.log('not sure');
@@ -3397,7 +3401,7 @@ $http.post(link, {user_id: userid,name: user.name,education: user.education,loca
 	console.log(res.data.matrimonial_id)
 	window.localStorage.setItem('matrimonialid', res.data.matrimonial_id)
 	 
-	$window.location.reload(true);
+//	$window.location.reload(true);
 	$state.go('additionaldetails');
 		
 	}) 
